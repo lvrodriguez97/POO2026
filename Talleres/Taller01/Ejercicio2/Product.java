@@ -10,7 +10,7 @@ public class Product {
         if(initialName != null && !initialName.isEmpty()){
             name = initialName;
         }else{
-            name = "Producto sin referencia asignada";
+            name = "sin referencia asignada";
         }
 
         if(initialPrice > 0){
@@ -63,5 +63,26 @@ public class Product {
         }else{
             return false;
         }
+    }
+
+    public String updateProduct(String newName, double newPrice, int newStock){
+        boolean u1 = setName(newName);
+        boolean u2 = setPrice(newPrice);
+        boolean u3 = setStock(newStock);
+
+        String update = "Confirmacion de cambios: "+
+        "\nNombre: "+ u1 +
+        "\nPrecio: "+ u2 +
+        "\nStock: "+ u3;
+
+        return update;
+    }
+
+    public String showProductInformation(){
+        String information = "Nombre: "+ name + 
+        "\nPrecio: "+ price + 
+        "\nStock: "+ stock;
+
+        return information;
     }
 }
