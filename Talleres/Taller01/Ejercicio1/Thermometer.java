@@ -1,3 +1,5 @@
+package Talleres.Taller01.Ejercicio1;
+
 public class Thermometer {
 
     private double temperature;
