@@ -6,39 +6,11 @@ public class Vehicle {
     private String brand;
     private int currentSpeed;
     private int maximumSpeed;
-    private boolean initialPlateAccepted;
-    private boolean initialPlateModified;
-    private boolean initialPlateDeclined;
+    private int licenseResult;
+   
 
     public Vehicle(String initialLicensePlate, String initialBrand, int newMaximumSpeed){
-        boolean validPlate = true;
-        if(initialLicensePlate != null && initialLicensePlate.length()==6){
-            for(int i = 0; i < initialLicensePlate.length(); i++){
-                if(i < 3){
-                    if(!Character.isLetter(initialLicensePlate.charAt(i))){
-                        validPlate = false;
-                    }
-                }else{
-                    if(!Character.isDigit(initialLicensePlate.charAt(i))){
-                        validPlate = false;
-                    }
-                }
-            }
-            if(validPlate){
-                if(initialLicensePlate.equals(initialLicensePlate.toUpperCase())){
-                    licensePlate = initialLicensePlate;
-                    initialPlateAccepted = true;
-                }else{
-                    licensePlate = initialLicensePlate.toUpperCase();
-                    initialPlateModified = true;
-                }
-            }else{
-                licensePlate = "AAA000";
-                initialPlateDeclined = true;
-            }
-        }else{
-            licensePlate = "AAA000";
-        }
+        licenseResult = validateAndAssignPlate(initialLicensePlate);
 
         if(initialBrand != null){
             brand = initialBrand;
@@ -54,17 +26,39 @@ public class Vehicle {
 
         currentSpeed = 0;
     }
-    
-    public void checkVehicleRegistration(){
-        if(initialPlateAccepted){
-            System.out.println("El registro de placa se aprobó| placa: "+ licensePlate+" guardada.");
-        }else if(initialPlateDeclined){
-            System.out.println("Registro de placa inválido, se asigna valor por defecto.");
-        }else if(initialPlateModified){
-            System.out.println("El registro de la placa se realizo con modificaciones| "+ licensePlate+" guardada.");
+    private boolean isPlateFormatValid(String plate){
+        if(plate == null || plate.length() != 6) return false;
+        for( int i= 0; i < 3; i++){    
+            if(!Character.isLetter(plate.charAt(i))) return false;
         }
+        for(int i = 3; i <= 5; i++){
+            if(!Character.isDigit(plate.charAt(i))) return false;
+        }
+        return true;
     }
 
+    private int validateAndAssignPlate(String plate){
+        if(!isPlateFormatValid(plate)){
+            licensePlate = "AAA000";
+            return 0;
+        }
+        if(plate.equals(plate.toUpperCase())){
+            licensePlate = plate;
+            return 1;
+        } 
+        
+        licensePlate = plate.toUpperCase();
+        return 2;   
+    }
+
+    
+    public String getRegistrationStatus(){
+        switch (licenseResult){
+        case 1: return "El registro de placa se aprobó| placa: "+ licensePlate+" guardada.";
+        case 2: return "El registro de la placa se realizo con modificaciones| " + licensePlate+" guardada.";
+        default : return "Registro de placa inválido, se asigna valor por defecto.";
+        }
+    }
     public String getLicensePlate(){
         return licensePlate;
     }
@@ -77,26 +71,25 @@ public class Vehicle {
     public int getMaximumSpeed(){
         return maximumSpeed;
     }
-    public void getAvailableInformation(){
-        System.out.println("Vehiculo: "+ licensePlate +"| Velocidad actual: "+ currentSpeed+"| Velocidad máxima: "+maximumSpeed);
+    public String getAvailableInformation(){
+        return "Vehiculo: "+ licensePlate +"| Velocidad actual: "+ currentSpeed+"| Velocidad máxima: "+maximumSpeed;
     }
 
 
-    public int accelerate(){
-        boolean itsPosible = (10 + currentSpeed <= maximumSpeed);
-
-        if(itsPosible){
-            currentSpeed += 10;
-        }
-        return currentSpeed;
+    public boolean accelerate(){
+        if(10 + currentSpeed > maximumSpeed) return false;
+        currentSpeed += 10;
+        return true; 
     }
     
-    public int brake(){
-        boolean vehicleIsParked = (currentSpeed == 0);
-        if (!vehicleIsParked){
-            currentSpeed -= 10;
-        }
-        return currentSpeed;
+    public boolean brake(){
+        if (currentSpeed == 0) return false;
+        currentSpeed -= 10;
+        return true;
+    }
 
+    public boolean setLicensePlate(String plate){
+        licenseResult = validateAndAssignPlate(plate);
+        return licenseResult != 0;
     }
 }
