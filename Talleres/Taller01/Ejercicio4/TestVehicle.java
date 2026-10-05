@@ -4,7 +4,6 @@ public class TestVehicle {
     
     private static final int MAXIMUM_SPEED1 = 100;
     private static final int MAXIMUM_SPEED2 = 10;
-    private static final int SPEED_STEP = 10;
     private static final int INVALID_MAXIMUM_SPEED = 5;
     private static final String DEFAULT_PLATE = "AAA000";
     private static final String VALID_PLATE_UPPER = "BGT546";
