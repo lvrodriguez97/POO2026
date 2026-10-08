@@ -7,7 +7,7 @@ public class Ellipse extends Circle {
     public Ellipse (int id, float x, float y, float radius1, float radius2){
         super(id, x, y, radius1);
         setRadius2(radius2);
-        setShapeClasification("Ellipse");
+        setShapeClassification("Ellipse");
     }
 
     public void setRadius2(float radius){
@@ -41,6 +41,6 @@ public class Ellipse extends Circle {
 
     @Override
     public String getShapeDimensions(){
-        return "\nradius 1: "+getRadius1()+" radius 2: "+getRadius2()+" area: "+getArea()+" perimeter: "+getPerimeter();
+        return "\nradius 1: "+getRadius1()+" radius 2: "+getRadius2();
     }
 }

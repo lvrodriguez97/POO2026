@@ -7,7 +7,7 @@ public class Triangle extends Rectangle {
     public Triangle(int id, float x, float y, float side1, float side2, float side3){
         super(id, x, y, side1, side2);
         setSide3(side3);
-        setShapeClasification("Triangle");
+        setShapeClassification("Triangle");
     }
 
     public void setSide3(float side3){
@@ -41,7 +41,6 @@ public class Triangle extends Rectangle {
 
     @Override
     public String getShapeDimensions(){
-        return "\n side 1: "+getSide1()+" side 2: "+getSide2()+" side 3: "+getSide3()+
-        "\n area: "+getArea()+" perimeter: "+getPerimeter();
+        return "\n side 1: "+getSide1()+" side 2: "+getSide2()+" side 3: "+getSide3();
     }
 }

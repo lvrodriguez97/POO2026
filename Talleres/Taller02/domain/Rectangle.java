@@ -7,7 +7,7 @@ public class Rectangle extends Square {
     public Rectangle(int id, float x, float y, float side1, float side2){
         super(id, x, y, side1);
         setSide2(side2);
-        setShapeClasification("Rectangle");
+        setShapeClassification("Rectangle");
     }
 
     public void setSide2(float side2){
@@ -24,6 +24,6 @@ public class Rectangle extends Square {
 
     @Override
     public String getShapeDimensions(){
-        return "\n side 1: "+getSide1()+" side 2: "+getSide2()+" area: "+getArea()+" perimeter: "+getPerimeter();
+        return "\n side 1: "+getSide1()+" side 2: "+getSide2();
     }
 }

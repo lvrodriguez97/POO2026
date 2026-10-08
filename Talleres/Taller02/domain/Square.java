@@ -8,7 +8,7 @@ public class Square extends Shape {
     public Square(int id, float x, float y, float side1 ) {
         super(id, x, y);
         setSide1(side1);
-        setShapeClasification("Square");
+        setShapeClassification("Square");
     }
 
     public void setSide1(float side1){
@@ -39,7 +39,7 @@ public class Square extends Shape {
 
     @Override
     public String getShapeDimensions(){
-        return "\n side: "+getSide1()+" area: "+getArea()+" perimeter: "+getPerimeter();
+        return "\n side: "+getSide1();
     }
 
 

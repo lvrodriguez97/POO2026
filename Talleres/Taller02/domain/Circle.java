@@ -7,7 +7,7 @@ public class Circle extends Shape {
     public Circle(int id, float x, float y, float radius){
         super(id, x, y);
         setRadius1(radius);
-        setShapeClasification("Circle");
+        setShapeClassification("Circle");
     }
 
     public void setRadius1(float radius){
@@ -33,6 +33,6 @@ public class Circle extends Shape {
 
     @Override
     public String getShapeDimensions(){
-        return "\nradius: "+getRadius1()+" area: "+getArea()+" perimeter: "+getPerimeter();
+        return "\nradius: "+getRadius1();
     }
 }

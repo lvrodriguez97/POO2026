@@ -7,7 +7,7 @@ public abstract class Shape {
     private int id;
     private float coordinateX;
     private float coordinateY;
-    private String shapeClasification;
+    private String shapeClassification;
 
     public Shape(int id, float x, float y){
         setId(id);
@@ -31,8 +31,8 @@ public abstract class Shape {
         coordinateY = y;
     }
 
-    public void setShapeClasification(String c){
-        shapeClasification = c;
+    protected void setShapeClassification(String c){
+        shapeClassification = c;
     }
 
     public int getId(){
@@ -48,14 +48,19 @@ public abstract class Shape {
     }
     public String getShapeInfo(){
         String s;
-        s = shapeClasification +"| id: "+ getId()+" position: ("+ getCoordinateX()+","+getCoordinateY();
+        s = shapeClassification +"| id: "+ getId()+" position: ("+ getCoordinateX()+","+getCoordinateY()+")";
         return s;
     }
 
-    public String printShape(){
-        return getShapeInfo() + getShapeDimensions();
+    public String getShapeReport(){
+        return getShapeInfo() + getShapeDimensions()+
+        " area: "+getArea()+" perimeter: "+getPerimeter();
     }
 
+    public String getShapeClassification(){
+        return shapeClassification;
+    }
+    
     public abstract double getArea();
     public abstract double getPerimeter();
     public abstract String getShapeDimensions();
